@@ -1,5 +1,5 @@
 // src/pages/ProjectsPage.jsx
-import React, { useState, useEffect } from 'react';
+import React from 'react'; // Removed useState and useEffect as data will be static
 import styled from 'styled-components';
 import theme from '../theme';
 
@@ -101,74 +101,118 @@ const ProjectLinks = styled.div`
   }
 `;
 
-const LoadingMessage = styled.p`
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem;
-  color: ${theme.textLight};
-  margin-top: 5rem;
-`;
+// Removed LoadingMessage and ErrorMessage as data is now static
+// const LoadingMessage = styled.p`
+//   font-family: 'Poppins', sans-serif;
+//   font-size: 1.2rem;
+//   color: ${theme.textLight};
+//   margin-top: 5rem;
+// `;
 
-const ErrorMessage = styled.p`
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.2rem;
-  color: red;
-  margin-top: 5rem;
-`;
+// const ErrorMessage = styled.p`
+//   font-family: 'Poppins', sans-serif;
+//   font-size: 1.2rem;
+//   color: red;
+//   margin-top: 5rem;
+// `;
 
 const ProjectsPage = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // Static project data with more details
+  const projects = [
+    {
+      id: 1,
+      name: "Mental Health App",
+      description: "A comprehensive application designed to provide support and resources for mental well-being. Features include mood tracking, guided meditations, and access to a curated list of mental health articles and professional contacts. Built with React and Node.js.",
+      githubUrl: "https://github.com/Kabuga-lornah/mental-health",
+      demoUrl: "https://mentalhealth10.vercel.app/",
+    },
+    {
+      id: 2,
+      name: "Pet Adoption Website",
+      description: "A culminating React capstone project for adopting pets. It features a responsive design, advanced search and filtering options for available pets, user authentication, and an intuitive interface for managing adoption requests. Technologies include React Router and Styled Components.",
+      githubUrl: "https://github.com/Kabuga-lornah/react-capstone",
+      demoUrl: "https://react-capstone-tan.vercel.app/",
+    },
+    {
+      id: 3,
+      name: "Skincare Website",
+      description: "An e-commerce style website focused on skincare products. It includes product listings with detailed descriptions, a shopping cart functionality, and user reviews. The site emphasizes a clean and responsive UI/UX, built using HTML, CSS, and JavaScript.",
+      githubUrl: "https://github.com/Kabuga-lornah/skincare-website",
+      demoUrl: "https://kabuga-lornah.github.io/skincare-website/home",
+    },
+    {
+      id: 4,
+      name: "Recipe Book",
+      description: "A dynamic web application where users can discover, save, and manage their favorite recipes. Key features include searching recipes by ingredients, categories, or cuisine types, and adding personal notes. Developed using HTML, CSS, and vanilla JavaScript with local storage for persistence.",
+      githubUrl: "https://github.com/Kabuga-lornah/recipe_book",
+      demoUrl: "https://kabuga-lornah.github.io/recipe_book/home",
+    },
+    {
+      id: 5,
+      name: "To Do Website",
+      description: "A simple yet functional to-do list application built using React. It allows users to add, delete, and mark tasks as complete, with persistent storage using local storage. This project demonstrates fundamental React concepts like component state, props, and event handling.",
+      githubUrl: "https://github.com/Kabuga-lornah/week-3-react",
+      demoUrl: "https://week-3-react.vercel.app/",
+    },
+    {
+      id: 6,
+      name: "Weather App",
+      description: "A minimalist weather application that fetches real-time weather data for any city worldwide. Users can search for locations and view current temperature, humidity, and wind speed. Built with JavaScript and integrated with a third-party weather API for data retrieval.",
+      githubUrl: "https://github.com/Kabuga-lornah/weather_app",
+      demoUrl: "https://kabuga-lornah.github.io/weather_app/weather",
+    },
+  ];
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('https://api.github.com/users/Kabuga-lornah/repos?sort=updated&direction=desc');
-        if (!response.ok) {
-          throw new Error(`GitHub API error: ${response.statusText}`);
-        }
-        const data = await response.json();
+  // Removed useEffect hook for fetching data dynamically
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       setLoading(true);
+  //       const response = await fetch('https://api.github.com/users/Kabuga-lornah/repos?sort=updated&direction=desc');
+  //       if (!response.ok) {
+  //         throw new Error(`GitHub API error: ${response.statusText}`);
+  //       }
+  //       const data = await response.json();
 
-        // Filter and map relevant projects
-        const filteredProjects = data
-          .filter(repo => !repo.fork && !repo.archived && repo.description) // Filter out forks, archived, and repos without descriptions
-          .slice(0, 6) // Take top 6 projects
-          .map(repo => ({
-            id: repo.id,
-            name: repo.name.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase()), // Format name (e.g., "netflix-clone" to "Netflix Clone")
-            description: repo.description,
-            githubUrl: repo.html_url,
-            demoUrl: repo.homepage || null, // homepage is often the live demo link
-            language: repo.language,
-            updatedAt: new Date(repo.updated_at).toLocaleDateString(),
-          }));
+  //       const filteredProjects = data
+  //         .filter(repo => !repo.fork && !repo.archived && repo.description)
+  //         .slice(0, 6)
+  //         .map(repo => ({
+  //           id: repo.id,
+  //           name: repo.name.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase()),
+  //           description: repo.description,
+  //           githubUrl: repo.html_url,
+  //           demoUrl: repo.homepage || null,
+  //           language: repo.language,
+  //           updatedAt: new Date(repo.updated_at).toLocaleDateString(),
+  //         }));
 
-        setProjects(filteredProjects);
-      } catch (err) {
-        console.error("Failed to fetch projects:", err);
-        setError("Failed to load projects. Please try again later.");
-      } finally {
-        setLoading(false);
-      }
-    };
+  //       setProjects(filteredProjects);
+  //     } catch (err) {
+  //       console.error("Failed to fetch projects:", err);
+  //       setError("Failed to load projects. Please try again later.");
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchProjects();
-  }, []);
+  //   fetchProjects();
+  // }, []);
 
   return (
     <ProjectsContainer>
       <ProjectsTitle>My Projects</ProjectsTitle>
 
-      {loading && <LoadingMessage>Loading projects...</LoadingMessage>}
+      {/* Removed conditional rendering for loading and error messages */}
+      {/* {loading && <LoadingMessage>Loading projects...</LoadingMessage>}
       {error && <ErrorMessage>{error}</ErrorMessage>}
 
       {!loading && !error && projects.length === 0 && (
         <p>No projects found. Please check the GitHub username or try again later.</p>
-      )}
+      )} */}
 
       <ProjectGrid>
-        {!loading && !error && projects.map(project => (
+        {projects.map(project => ( // Directly map over the static projects array
           <ProjectCard key={project.id}>
             <h3>{project.name}</h3>
             <p>{project.description}</p>
@@ -176,7 +220,7 @@ const ProjectsPage = () => {
               <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="github-link">
                 View on GitHub
               </a>
-              {project.demoUrl && (
+              {project.demoUrl && ( // Conditionally render demo link if available
                 <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="demo-link">
                   Live Demo
                 </a>

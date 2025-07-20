@@ -148,33 +148,7 @@ const ContactPage = () => {
           {/* Add LinkedIn or other relevant links if you wish */}
         </ContactInfo>
 
-        <SectionHeading>Send Me a Message</SectionHeading>
-        <Paragraph>
-          You can also use the form below to send me a direct message. I'll get back to you as soon as possible!
-        </Paragraph>
-
-        <FormContainer>
-          <FormGroup>
-            <label htmlFor="name">Name</label>
-            <input type="text" id="name" name="name" required />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="subject">Subject</label>
-            <input type="text" id="subject" name="subject" />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-          </FormGroup>
-          <SubmitButton type="submit">Send Message</SubmitButton>
-        </FormContainer>
-        <Paragraph style={{ marginTop: '2rem', fontSize: '0.9rem', color: theme.textLight }}>
-          Note: This is a static form for demonstration. For a functional form, you would integrate a backend service (e.g., Formspree, Netlify Forms, or a custom API).
-        </Paragraph>
+       
       </ContactContent>
     </ContactContainer>
   );

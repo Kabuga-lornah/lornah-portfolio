@@ -31,13 +31,15 @@ const EducationContent = styled.div`
 `;
 
 const EducationEntry = styled.div`
-  background-color: ${theme.primaryColor}; /* Primary color for education entries */
-  color: ${theme.secondaryColor}; /* White text on primary background */
+  background-color: ${theme.primaryColor}; 
+  color: ${theme.secondaryColor}; 
   padding: 2.5rem;
   border-radius: 12px;
   margin-bottom: 2.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+ 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  padding-right: 80px; 
 
   &:hover {
     transform: translateY(-5px);
@@ -79,6 +81,19 @@ const EducationEntry = styled.div`
   }
 `;
 
+const SchoolLogo = styled.img`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: ${theme.secondaryColor}; /* Added background for visibility */
+  padding: 5px; /* Added padding to ensure logo is within its circle */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+`;
+
 const EducationPage = () => {
   return (
     <EducationContainer>
@@ -86,6 +101,7 @@ const EducationPage = () => {
 
       <EducationContent>
         <EducationEntry>
+          <SchoolLogo src="/zindua.png" alt="Zindua Coding School Logo" /> 
           <h2>Zindua Coding School</h2>
           <h3>Software Engineering Program (February 2025 - Present)</h3>
           <p>
@@ -103,6 +119,7 @@ const EducationPage = () => {
         </EducationEntry>
 
         <EducationEntry>
+          <SchoolLogo src="/pioneer.jpg" alt="Pioneer International University Logo" /> 
           <h2>Pioneer International University</h2>
           <h3>Bachelor of Arts in International Relations and Diplomacy (2020 - 2024)</h3>
           <p>
@@ -119,6 +136,7 @@ const EducationPage = () => {
         </EducationEntry>
 
         <EducationEntry>
+          <SchoolLogo src="/maryhill.png" alt="Maryhill Girls High School Logo" /> 
           <h2>Maryhill Girls High School</h2>
           <h3>Kenya Certificate of Secondary Education (KCSE) (2016 - 2019)</h3>
           <p>
