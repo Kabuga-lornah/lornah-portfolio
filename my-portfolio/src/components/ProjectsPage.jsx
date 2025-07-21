@@ -1,120 +1,312 @@
 // src/pages/ProjectsPage.jsx
-import React from 'react'; // Removed useState and useEffect as data will be static
-import styled from 'styled-components';
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
 import theme from '../theme';
+
+// Keyframes for animations
+const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const slideInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const glow = keyframes`
+  0%, 100% {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  }
+  50% {
+    box-shadow: 0 12px 30px rgba(155, 135, 95, 0.2);
+  }
+`;
 
 // Styled Components for Projects Page
 const ProjectsContainer = styled.section`
-  background-color: ${theme.secondaryColor};
+  background: linear-gradient(135deg, ${theme.secondaryColor} 0%, #fefefe 100%);
   color: ${theme.textDark};
-  padding: 6rem 2rem;
-  text-align: center;
-  min-height: calc(100vh - 120px); /* Adjust for Navbar and Footer height */
+  padding: 8rem 2rem 6rem;
+  min-height: calc(100vh - 120px);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(circle at 20% 50%, rgba(155, 135, 95, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(155, 135, 95, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 80%, rgba(155, 135, 95, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+  }
+`;
+
+const ContentWrapper = styled.div`
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
 `;
 
 const ProjectsTitle = styled.h1`
   font-family: 'Cinzel', serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(3rem, 8vw, 5rem);
   color: ${theme.primaryColor};
-  margin-bottom: 3rem;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  position: relative;
+  animation: ${slideInLeft} 1s ease-out;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, ${theme.primaryColor}, transparent);
+    border-radius: 2px;
+  }
+`;
+
+const Subtitle = styled.p`
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3rem;
+  color: ${theme.textLight};
+  text-align: center;
+  margin-bottom: 4rem;
+  opacity: 0.8;
+  animation: ${fadeInUp} 1s ease-out 0.3s both;
+  line-height: 1.6;
 `;
 
 const ProjectGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 `;
 
 const ProjectCard = styled.div`
-  background-color: ${theme.secondaryColor};
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
+  background: linear-gradient(145deg, ${theme.secondaryColor} 0%, rgba(255, 255, 255, 0.95) 100%);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
   text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #eee;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(155, 135, 95, 0.1);
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Pushes buttons to the bottom */
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  animation: ${fadeInUp} 0.8s ease-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, ${theme.primaryColor}, ${theme.accentColor});
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    animation: ${glow} 2s ease-in-out infinite;
+
+    &::before {
+      transform: scaleX(1);
+    }
   }
 
-  h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 1.8rem;
-    color: ${theme.primaryColor};
-    margin-bottom: 0.8rem;
-  }
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.4s; }
+  &:nth-child(5) { animation-delay: 0.5s; }
+  &:nth-child(6) { animation-delay: 0.6s; }
+`;
 
-  p {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    color: ${theme.textLight};
-    margin-bottom: 1.5rem;
-    flex-grow: 1; /* Allows description to take available space */
+const ProjectHeader = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const ProjectTitle = styled.h3`
+  font-family: 'Cinzel', serif;
+  font-size: 1.9rem;
+  color: ${theme.primaryColor};
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: color 0.3s ease;
+
+  ${ProjectCard}:hover & {
+    color: ${theme.accentColor};
   }
+`;
+
+const ProjectDescription = styled.p`
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.05rem;
+  color: ${theme.textLight};
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+  opacity: 0.9;
 `;
 
 const ProjectLinks = styled.div`
-  margin-top: 1.5rem;
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap; /* Allow links to wrap on small screens */
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  margin-top: auto;
 
-  a {
-    display: inline-block;
-    padding: 0.7rem 1.2rem;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .github-link {
-    background-color: ${theme.textDark}; /* Dark background for GitHub link */
-    color: ${theme.secondaryColor};
-    border: 2px solid ${theme.textDark};
-
-    &:hover {
-      background-color: ${theme.primaryColor};
-      border-color: ${theme.primaryColor};
-    }
-  }
-
-  .demo-link {
-    background-color: ${theme.accentColor}; /* Accent color for demo link */
-    color: ${theme.secondaryColor};
-    border: 2px solid ${theme.accentColor};
-
-    &:hover {
-      background-color: ${theme.primaryColor};
-      border-color: ${theme.primaryColor};
-    }
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 0.8rem;
   }
 `;
 
-// Removed LoadingMessage and ErrorMessage as data is now static
-// const LoadingMessage = styled.p`
-//   font-family: 'Poppins', sans-serif;
-//   font-size: 1.2rem;
-//   color: ${theme.textLight};
-//   margin-top: 5rem;
-// `;
+const ProjectLink = styled.a`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.8rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  min-width: 140px;
 
-// const ErrorMessage = styled.p`
-//   font-family: 'Poppins', sans-serif;
-//   font-size: 1.2rem;
-//   color: red;
-//   margin-top: 5rem;
-// `;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &.github-link {
+    background: linear-gradient(135deg, ${theme.textDark} 0%, #2c2c2c 100%);
+    color: ${theme.secondaryColor};
+    border: 2px solid ${theme.textDark};
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: linear-gradient(135deg, ${theme.primaryColor} 0%, #8b7355 100%);
+      border-color: ${theme.primaryColor};
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(155, 135, 95, 0.4);
+    }
+  }
+
+  &.demo-link {
+    background: linear-gradient(135deg, ${theme.accentColor} 0%, #c19a6b 100%);
+    color: ${theme.secondaryColor};
+    border: 2px solid ${theme.accentColor};
+    box-shadow: 0 4px 15px rgba(193, 154, 107, 0.3);
+
+    &:hover {
+      background: linear-gradient(135deg, ${theme.primaryColor} 0%, #8b7355 100%);
+      border-color: ${theme.primaryColor};
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(155, 135, 95, 0.4);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
+const StatsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 4rem 0;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+    margin: 3rem 0;
+  }
+`;
+
+const StatItem = styled.div`
+  text-align: center;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.6) 100%);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(155, 135, 95, 0.1);
+  min-width: 120px;
+  transition: transform 0.3s ease;
+  animation: ${fadeInUp} 1s ease-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .number {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: ${theme.primaryColor};
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: ${theme.textLight};
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+  }
+`;
 
 const ProjectsPage = () => {
   // Static project data with more details
@@ -163,72 +355,58 @@ const ProjectsPage = () => {
     },
   ];
 
-  // Removed useEffect hook for fetching data dynamically
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     try {
-  //       setLoading(true);
-  //       const response = await fetch('https://api.github.com/users/Kabuga-lornah/repos?sort=updated&direction=desc');
-  //       if (!response.ok) {
-  //         throw new Error(`GitHub API error: ${response.statusText}`);
-  //       }
-  //       const data = await response.json();
-
-  //       const filteredProjects = data
-  //         .filter(repo => !repo.fork && !repo.archived && repo.description)
-  //         .slice(0, 6)
-  //         .map(repo => ({
-  //           id: repo.id,
-  //           name: repo.name.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase()),
-  //           description: repo.description,
-  //           githubUrl: repo.html_url,
-  //           demoUrl: repo.homepage || null,
-  //           language: repo.language,
-  //           updatedAt: new Date(repo.updated_at).toLocaleDateString(),
-  //         }));
-
-  //       setProjects(filteredProjects);
-  //     } catch (err) {
-  //       console.error("Failed to fetch projects:", err);
-  //       setError("Failed to load projects. Please try again later.");
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProjects();
-  // }, []);
-
   return (
     <ProjectsContainer>
-      <ProjectsTitle>My Projects</ProjectsTitle>
+      <ContentWrapper>
+        <ProjectsTitle>My Projects</ProjectsTitle>
+        <Subtitle>
+          Explore my portfolio of web applications and digital experiences, 
+          each crafted with attention to detail and modern technologies.
+        </Subtitle>
 
-      {/* Removed conditional rendering for loading and error messages */}
-      {/* {loading && <LoadingMessage>Loading projects...</LoadingMessage>}
-      {error && <ErrorMessage>{error}</ErrorMessage>}
+        <StatsContainer>
+          <StatItem>
+            <span className="number">6</span>
+            <span className="label">Projects</span>
+          </StatItem>
+         
+          <StatItem>
+            <span className="number">100%</span>
+            <span className="label">Responsive</span>
+          </StatItem>
+        </StatsContainer>
 
-      {!loading && !error && projects.length === 0 && (
-        <p>No projects found. Please check the GitHub username or try again later.</p>
-      )} */}
-
-      <ProjectGrid>
-        {projects.map(project => ( // Directly map over the static projects array
-          <ProjectCard key={project.id}>
-            <h3>{project.name}</h3>
-            <p>{project.description}</p>
-            <ProjectLinks>
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="github-link">
-                View on GitHub
-              </a>
-              {project.demoUrl && ( // Conditionally render demo link if available
-                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="demo-link">
-                  Live Demo
-                </a>
-              )}
-            </ProjectLinks>
-          </ProjectCard>
-        ))}
-      </ProjectGrid>
+        <ProjectGrid>
+          {projects.map(project => (
+            <ProjectCard key={project.id}>
+              <ProjectHeader>
+                <ProjectTitle>{project.name}</ProjectTitle>
+              </ProjectHeader>
+              <ProjectDescription>{project.description}</ProjectDescription>
+              <ProjectLinks>
+                <ProjectLink 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="github-link"
+                >
+                  View on GitHub
+                </ProjectLink>
+                {project.demoUrl && (
+                  <ProjectLink 
+                    href={project.demoUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="demo-link"
+                  >
+                    Live Demo
+                  </ProjectLink>
+                )}
+              </ProjectLinks>
+            </ProjectCard>
+          ))}
+        </ProjectGrid>
+      </ContentWrapper>
     </ProjectsContainer>
   );
 };
