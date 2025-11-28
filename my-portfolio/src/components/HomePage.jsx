@@ -338,7 +338,8 @@ const HeroImageContainer = styled.div`
   }
 `;
 
-const ProfileImg = styled.img`
+// New styled component for the video, replacing the old ProfileImg style
+const ProfileVideo = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -610,8 +611,17 @@ const HomePage = () => {
           </HeroButtons>
         </HeroContent>
         <HeroImageContainer>
-          {/* Add your profile image here */}
-          {/* <ProfileImg src="your-profile-image.jpg" alt="Lornah Kabuga" /> */}
+          {/* Replaced placeholder image with the video element */}
+          <ProfileVideo
+            src="/video.mp4" 
+            alt="Lornah Kabuga Profile Video" 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            Your browser does not support the video tag.
+          </ProfileVideo>
         </HeroImageContainer>
       </HomePageHero>
 

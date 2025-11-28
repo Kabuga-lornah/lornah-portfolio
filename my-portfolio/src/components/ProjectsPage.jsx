@@ -353,6 +353,20 @@ const ProjectsPage = () => {
       githubUrl: "https://github.com/Kabuga-lornah/weather_app",
       demoUrl: "https://kabuga-lornah.github.io/weather_app/weather",
     },
+    {
+      id: 7,
+      name: "UlinziMind",
+      description: "An advanced web application built for mental resilience and well-being. It offers tools for stress management and cognitive support, designed with a focus on user privacy and data-driven insights.",
+      githubUrl: "https://github.com/Kabuga-lornah/UlinziMind",
+      demoUrl: null, // Assuming no live demo is available
+    },
+    {
+      id: 8,
+      name: "Face Recognition System",
+      description: "A robust computer vision project for real-time face detection and recognition, showcasing expertise in image processing and machine learning algorithms using Python.",
+      githubUrl: "https://github.com/Kabuga-lornah/face-recognition",
+      demoUrl: null, // Assuming no live demo is available
+    },
   ];
 
   return (
@@ -366,7 +380,7 @@ const ProjectsPage = () => {
 
         <StatsContainer>
           <StatItem>
-            <span className="number">6</span>
+            <span className="number">{projects.length}</span> 
             <span className="label">Projects</span>
           </StatItem>
          
