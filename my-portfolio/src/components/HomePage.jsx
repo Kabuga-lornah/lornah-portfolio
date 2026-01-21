@@ -610,19 +610,7 @@ const HomePage = () => {
             </StyledButton>
           </HeroButtons>
         </HeroContent>
-        <HeroImageContainer>
-          {/* Replaced placeholder image with the video element */}
-          <ProfileVideo
-            src="/video.mp4" 
-            alt="Lornah Kabuga Profile Video" 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-          >
-            Your browser does not support the video tag.
-          </ProfileVideo>
-        </HeroImageContainer>
+       
       </HomePageHero>
 
       <SectionContainer id="featured-projects" $bgColor={theme.secondaryColor}>
