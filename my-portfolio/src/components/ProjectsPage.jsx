@@ -316,7 +316,7 @@ const ProjectsPage = () => {
       name: "Mental Health App",
       description: "A comprehensive application designed to provide support and resources for mental well-being. Features include mood tracking, guided meditations, and access to a curated list of mental health articles and professional contacts. Built with React and Node.js.",
       githubUrl: "https://github.com/Kabuga-lornah/mental-health",
-      demoUrl: "https://mentalhealth10.vercel.app/",
+      demoUrl: "https://mental-health-virid.vercel.app/",
     },
     {
       id: 2,
