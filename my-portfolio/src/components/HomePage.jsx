@@ -623,7 +623,7 @@ const HomePage = () => {
               featuring user-friendly interfaces and accessible design principles.
             </p>
             <a
-              href="https://mentalhealth10.vercel.app/"
+              href="https://mental-health-virid.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
             >
