@@ -660,7 +660,7 @@ const HomePage = () => {
           </ProjectCard>
         </ProjectGrid>
         <ViewAllButton
-          href="/projects"
+          href="/projectspage"
           className="secondary-btn"
         >
           View All Projects
