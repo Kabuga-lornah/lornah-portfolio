@@ -240,7 +240,7 @@ const EducationPage = () => {
         <EducationEntry delay="0.2s">
           <SchoolLogo src="/zindua.png" alt="Zindua Coding School Logo" /> 
           <h2>Zindua Coding School</h2>
-          <h3>Software Engineering Program (February 2025 - Present)</h3>
+          <h3>Software Engineering Program (February 2025 - November 2025)</h3>
           <p>
             Currently immersed in an intensive Software Engineering program,
             honing practical skills in modern web development. This program
@@ -256,6 +256,38 @@ const EducationPage = () => {
         </EducationEntry>
 
         <EducationEntry delay="0.4s">
+          <SchoolLogo src="/zindua.png" alt="Zindua Coding School Logo" />
+          <h2>Data Structures & Algorithms</h2>
+          <h3>Zindua School (September 2025 - November 2025)</h3>
+          <p>
+            Studied core data structures and algorithmic problem-solving concepts,
+            including arrays, linked lists, stacks, queues, trees, graphs,
+            sorting, searching, and time complexity analysis.
+          </p>
+          <ul>
+            <li>Strengthened logical thinking and problem-solving skills</li>
+            <li>Improved understanding of efficient coding patterns and complexity</li>
+            <li>Built confidence in tackling technical interview-style challenges</li>
+          </ul>
+        </EducationEntry>
+
+        <EducationEntry delay="0.5s">
+          <SchoolLogo src="/zindua.png" alt="Zindua Coding School and Figma with Friends Logo" />
+          <h2>Web Designing</h2>
+          <h3>Zindua School & Figma with Friends (February 2025 - June 2025)</h3>
+          <p>
+            Completed a web designing course focused on building modern, user-friendly
+            interfaces using HTML, CSS, responsive design principles, and Figma-based
+            wireframing and prototyping.
+          </p>
+          <ul>
+            <li>Learned the foundations of responsive and visually appealing web design</li>
+            <li>Explored UI/UX principles and design thinking</li>
+            <li>Practiced creating layouts and prototypes in Figma</li>
+          </ul>
+        </EducationEntry>
+
+        <EducationEntry delay="0.6s">
           <SchoolLogo src="/pioneer.jpg" alt="Pioneer International University Logo" /> 
           <h2>Pioneer International University</h2>
           <h3>Bachelor of Arts in International Relations and Diplomacy (2020 - 2024)</h3>
@@ -272,7 +304,7 @@ const EducationPage = () => {
           </ul>
         </EducationEntry>
 
-        <EducationEntry delay="0.6s">
+        <EducationEntry delay="0.7s">
           <SchoolLogo src="/maryhill.png" alt="Maryhill Girls High School Logo" /> 
           <h2>Maryhill Girls High School</h2>
           <h3>Kenya Certificate of Secondary Education (KCSE) (2016 - 2019)</h3>

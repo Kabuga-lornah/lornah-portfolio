@@ -1,5 +1,6 @@
 // src/pages/HomePage.jsx
 import React from "react";
+import { Link } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
 import theme from "../theme";
 
@@ -215,7 +216,7 @@ const HeroButtons = styled.div`
   }
 `;
 
-const StyledButton = styled.a`
+const StyledButton = styled(Link)`
   display: inline-block;
   padding: 1rem 2.5rem;
   border-radius: 12px;
@@ -598,11 +599,11 @@ const HomePage = () => {
             innovation and programming expertise.
           </p>
           <HeroButtons>
-            <StyledButton href="/projects" className="primary-btn">
+            <StyledButton to="/projects" className="primary-btn">
               View My Work
             </StyledButton>
             <StyledButton
-              href="/contact"
+              to="/contact"
               className="secondary-btn"
               $onPrimaryBackground
             >
@@ -660,7 +661,7 @@ const HomePage = () => {
           </ProjectCard>
         </ProjectGrid>
         <ViewAllButton
-          href="/projectspage"
+          to="/projects"
           className="secondary-btn"
         >
           View All Projects
